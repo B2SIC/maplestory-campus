@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+  <title>어센틱 심볼 계산 결과</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Noto+Sans+KR&display=swap');
+    .container {
+      max-width: 800px;
+    }
+    .gm-font {
+      font-family: 'Gamja Flower', cursive;
+    }
+    .ns-font {
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    .border-left {
+      border-left: 1px solid black;
+    }
+    .border-right {
+      border-right: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="py-5 text-center">
+      <div class="row">
+        <div class="col-1">
+          <img src="img/authentic/cernium.png">
+        </div>
+        <div class="col-10">
+          <h2 class="gm-font">어센틱 심볼 계산 날짜</h2>
+        </div>
+        <div class="col-1">
+          <img src="img/authentic/odium.png">
+        </div>
+        <h3 class="gm-font" th:text="${goalDate}"></h3>
+        <div class="col">
+          <button class="w-50 btn btn-outline-dark btn-sm" type="button"
+                  onclick="location.href='count.html'"
+                  th:onclick="|location.href='@{/authentic}'|">
+            다시 계산하기
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <table class="table table-hover text-center border border-dark ns-font">
+      <thead>
+        <tr class="table-light">
+          <th scope="col">일차</th>
+          <th scope="col">세르니움 레벨</th>
+          <th scope="col">세르니움 경험치</th>
+          <th scope="col">아르크스 레벨</th>
+          <th scope="col">아르크스 경험치</th>
+          <th scope="col">오디움 레벨</th>
+          <th scope="col">오디움 경험치</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="dailyData : ${resultData}">
+          <td class="border-bottom border-dark border-right" th:text="${dailyData.get(0)}">일차</td>
+          <td class="border-bottom border-dark" th:text="|${dailyData.get(1)} 레벨|">세르니움 레벨</td>
+          <td class="border-bottom border-dark border-right" th:text="${dailyData.get(2)}">세르니움 경험치</td>
+          <td class="border-bottom border-dark" th:text="|${dailyData.get(3)} 레벨|">아르크스 레벨</td>
+          <td class="border-bottom border-dark border-right" th:text="${dailyData.get(4)}">아르크스 경험치</td>
+          <td class="border-bottom border-dark" th:text="|${dailyData.get(5)} 레벨|">오디움 레벨</td>
+          <td class="border-bottom border-dark" th:text="${dailyData.get(6)}">오디움 경험치</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
